@@ -1034,15 +1034,15 @@
                 
                 <div class="converter-field-group" style="grid-template-columns: 1fr 1fr 1fr; gap: 0.75rem;">
                     <div>
-                        <label class="section-title" style="display:block; margin-bottom: 0.50rem;">Input Score</label>
+                        <label class="section-title" for="conv-input-score" style="display:block; margin-bottom: 0.50rem;">Input Score</label>
                         <input type="number" id="conv-input-score" min="0" max="10" step="0.01" value="8.50" oninput="runSeoConversion()">
                     </div>
                     <div>
-                        <label class="section-title" style="display:block; margin-bottom: 0.50rem;">Subtractor (-)</label>
+                        <label class="section-title" for="conv-subtractor" style="display:block; margin-bottom: 0.50rem;">Subtractor (-)</label>
                         <input type="number" id="conv-subtractor" min="0" max="5" step="0.01" value="0.00" oninput="runSeoConversion()">
                     </div>
                     <div>
-                        <label class="section-title" style="display:block; margin-bottom: 0.50rem;">Multiplier (×)</label>
+                        <label class="section-title" for="conv-multiplier" style="display:block; margin-bottom: 0.50rem;">Multiplier (×)</label>
                         <input type="number" id="conv-multiplier" min="1" max="20" step="0.1" value="9.5" oninput="runSeoConversion()">
                     </div>
                 </div>
@@ -1302,20 +1302,20 @@
             if (currentMode === 'sgpa') {
                 targetRowDom.className = 'input-row sgpa-grid';
                 targetRowDom.innerHTML = `
-                    <input type="text" placeholder="e.g. Computer Networks" value="${customLabel}" oninput="executeCalculations()">
-                    <input type="number" min="1" max="20" placeholder="Credits" value="${parameterOne || 3}" oninput="executeCalculations()">
-                    <select onchange="executeCalculations()">
+                    <input type="text" aria-label="Subject name" placeholder="e.g. Computer Networks" value="${customLabel}" oninput="executeCalculations()">
+                    <input type="number" aria-label="Subject credits" min="1" max="20" placeholder="Credits" value="${parameterOne || 3}" oninput="executeCalculations()">
+                    <select aria-label="Subject grade" onchange="executeCalculations()">
                         ${Object.keys(gradeScale).map(g => `<option value="${g}" ${parameterTwo === g ? 'selected' : ''}>${g} (Point: ${gradeScale[g]})</option>`).join('')}
                     </select>
-                    <button class="btn-delete" onclick="removeRow(this)">✕</button>
+                    <button class="btn-delete" aria-label="Remove subject row" onclick="removeRow(this)">✕</button>
                 `;
             } else {
                 targetRowDom.className = 'input-row cgpa-grid';
                 targetRowDom.innerHTML = `
-                    <input type="text" placeholder="e.g. Third Semester" value="${customLabel}" oninput="executeCalculations()">
-                    <input type="number" min="0" max="10" step="0.01" placeholder="SGPA" value="${parameterOne ? parseFloat(parameterTwo).toFixed(2) : '9.00'}" oninput="executeCalculations()">
-                    <input type="number" min="1" max="40" placeholder="Credits" value="${parameterOne ? parameterOne : '20'}" oninput="executeCalculations()">
-                    <button class="btn-delete" onclick="removeRow(this)">✕</button>
+                    <input type="text" aria-label="Semester name" placeholder="e.g. Third Semester" value="${customLabel}" oninput="executeCalculations()">
+                    <input type="number" aria-label="Semester SGPA" min="0" max="10" step="0.01" placeholder="SGPA" value="${parameterOne ? parseFloat(parameterTwo).toFixed(2) : '9.00'}" oninput="executeCalculations()">
+                    <input type="number" aria-label="Semester credits" min="1" max="40" placeholder="Credits" value="${parameterOne ? parameterOne : '20'}" oninput="executeCalculations()">
+                    <button class="btn-delete" aria-label="Remove semester row" onclick="removeRow(this)">✕</button>
                 `;
             }
             rowWrapper.appendChild(targetRowDom);
